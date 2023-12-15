@@ -1,0 +1,8 @@
+# local note files
+leia.me
+
+# library files
+/backend/node_modules
+
+# environment variables
+/backend/.env.development

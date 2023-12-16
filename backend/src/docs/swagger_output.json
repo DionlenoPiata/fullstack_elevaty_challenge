@@ -27,6 +27,134 @@
           }
         }
       }
+    },
+    "/customers": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint para obter clientes",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna todos os clientes com busca e paginação.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint para criar cliente",
+        "responses": {
+          "200": {
+            "description": "Cria um cliente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint para atualizar um cliente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Atualiza um cliente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint para deletar cliente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleta um cliente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -37,6 +165,67 @@
           "message": {
             "type": "string",
             "example": "Fullstack Challenge 🏅 - Elevaty"
+          }
+        }
+      },
+      "customerResponse": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "João Silva"
+          },
+          "email": {
+            "type": "string",
+            "example": "joao.silva@example.com"
+          },
+          "birthDate": {
+            "type": "string",
+            "example": "1990-01-15"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+55 11 98765-4321"
+          },
+          "address": {
+            "type": "string",
+            "example": "Rua Exemplo, 123"
+          },
+          "creditCards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cardNumber": {
+                  "type": "string",
+                  "example": "9876 5432 1098 7654"
+                },
+                "cardHolder": {
+                  "type": "string",
+                  "example": "Joana Silva"
+                },
+                "expirationDate": {
+                  "type": "string",
+                  "example": "10/24"
+                },
+                "cvv": {
+                  "type": "string",
+                  "example": "456"
+                }
+              }
+            }
+          },
+          "invoiceLink": {
+            "type": "string",
+            "example": "https://example.com/invoice"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-01-01T12:00:00Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2023-12-14T15:30:00Z"
           }
         }
       }

@@ -19,9 +19,11 @@ async function connectDatabase() {
 connectDatabase();
 
 // loading models
+const customer = require("./models/customer");
 
 // routers
 const indexRoute = require("./routes/index-route");
+const customerRoute = require("./routes/customer-route");
 
 // data conversion middleware
 app.use(express.json({ limit: "5mb" }));
@@ -42,6 +44,7 @@ const swaggerFile = require("./docs/swagger_output.json");
 
 // application routes
 app.use("/", indexRoute);
+app.use("/", customerRoute);
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 

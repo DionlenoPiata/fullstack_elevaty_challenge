@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -22,6 +23,11 @@ export default function Grid() {
   const onEdit = (params) => {
     if (!params.row._id) return;
     navigate(`/customers/${params.row._id}`);
+  };
+
+  const onView = (params) => {
+    if (!params.row._id) return;
+    navigate(`/customers/view/${params.row._id}`);
   };
 
   const onDelete = (params) => {
@@ -73,11 +79,11 @@ export default function Grid() {
         }`,
     },
     { field: "email", headerName: "E-mail", minWidth: 200 },
-    { field: "mobile", headerName: "Celular", minWidth: 180 },
+    { field: "phone", headerName: "Celular", minWidth: 180 },
     {
-      field: "actions",
-      headerName: "Ações",
-      minWidth: 150,
+      field: "invoiceLink",
+      headerName: "Fatura",
+      minWidth: 100,
       sortable: false,
       renderCell: (params) => (
         <Stack direction="row" spacing={2}>
@@ -91,6 +97,20 @@ export default function Grid() {
           >
             <ReceiptLongIcon fontSize="inherit" />
           </IconButton>
+        </Stack>
+      ),
+    },
+    {
+      field: "actions",
+      headerName: "Ações",
+      minWidth: 150,
+      sortable: false,
+      renderCell: (params) => (
+        <Stack direction="row" spacing={2}>
+          <IconButton color="info" size="small" onClick={() => onView(params)}>
+            <VisibilityIcon fontSize="inherit" />
+          </IconButton>
+
           <IconButton color="info" size="small" onClick={() => onEdit(params)}>
             <EditIcon fontSize="inherit" />
           </IconButton>

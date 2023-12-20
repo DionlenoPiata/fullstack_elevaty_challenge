@@ -45,44 +45,52 @@ const ListCreditCards = ({ creditCards, setCreditCards }) => {
         Cartões de Crédito
       </Typography>
 
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <TextField
-            label="Número do Cartão"
-            variant="outlined"
-            fullWidth
-            value={newCardNumber}
-            onChange={(e) => setNewCardNumber(e.target.value)}
-          />
+      <Card style={{ margin: "20px" }}>
+        <CardContent>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <TextField
+                label="Número do Cartão"
+                variant="outlined"
+                fullWidth
+                value={newCardNumber}
+                onChange={(e) => setNewCardNumber(e.target.value)}
+              />
 
-          <TextField
-            label="Nome do Titular"
-            variant="outlined"
-            fullWidth
-            value={newCardHolder}
-            onChange={(e) => setNewCardHolder(e.target.value)}
-          />
-          <TextField
-            label="Data de Validade (MM/AA)"
-            variant="outlined"
-            fullWidth
-            value={newExpirationDate}
-            onChange={(e) => setNewExpirationDate(e.target.value)}
-          />
-          <TextField
-            label="CVV"
-            variant="outlined"
-            fullWidth
-            value={newCvv}
-            onChange={(e) => setNewCvv(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Button variant="contained" color="primary" onClick={handleAddCard}>
-            Adicionar Cartão
-          </Button>
-        </Grid>
-      </Grid>
+              <TextField
+                label="Nome do Titular"
+                variant="outlined"
+                fullWidth
+                value={newCardHolder}
+                onChange={(e) => setNewCardHolder(e.target.value)}
+              />
+              <TextField
+                label="Data de Validade (MM/AA)"
+                variant="outlined"
+                fullWidth
+                value={newExpirationDate}
+                onChange={(e) => setNewExpirationDate(e.target.value)}
+              />
+              <TextField
+                label="CVV"
+                variant="outlined"
+                fullWidth
+                value={newCvv}
+                onChange={(e) => setNewCvv(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleAddCard}
+              >
+                Adicionar Cartão
+              </Button>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
 
       <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
         {creditCards.map((card, index) => (

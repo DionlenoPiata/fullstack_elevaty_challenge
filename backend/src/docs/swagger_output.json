@@ -59,14 +59,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Retorna todos os clientes com busca e paginação.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/customerResponse"
-                }
-              }
-            }
+            "description": "Retorna todos os clientes com busca e paginação."
           },
           "500": {
             "description": "Internal Server Error"
@@ -80,14 +73,7 @@
         "description": "Endpoint para criar cliente",
         "responses": {
           "200": {
-            "description": "Cria um cliente.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/customerResponse"
-                }
-              }
-            }
+            "description": "Cria um cliente."
           },
           "201": {
             "description": "Created"
@@ -113,14 +99,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Retorna um cliente por ID.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/customerResponse"
-                }
-              }
-            }
+            "description": "Retorna um cliente por ID."
           },
           "500": {
             "description": "Internal Server Error"
@@ -144,14 +123,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Atualiza um cliente.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/customerResponse"
-                }
-              }
-            }
+            "description": "Atualiza um cliente."
           }
         }
       },
@@ -172,14 +144,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Deleta um cliente.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/customerResponse"
-                }
-              }
-            }
+            "description": "Deleta um cliente."
           },
           "500": {
             "description": "Internal Server Error"

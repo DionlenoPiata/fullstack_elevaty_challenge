@@ -16,13 +16,7 @@ exports.get = async (req, res, next) => {
     );
     /*  #swagger.responses[200] = {
                   description: "Retorna todos os clientes com busca e paginação.",
-                  content: {
-                      "application/json": {
-                          schema:{
-                              $ref: "#/components/schemas/customerResponse"
-                          }
-                      }           
-                  }
+                 
               }   
           */
     res.status(200).send({
@@ -51,13 +45,7 @@ exports.getById = async (req, res, next) => {
     let result = await customerDao.getById(id);
     /*  #swagger.responses[200] = {
                   description: "Retorna um  cliente por ID.",
-                  content: {
-                      "application/json": {
-                          schema:{
-                              $ref: "#/components/schemas/customerResponse"
-                          }
-                      }           
-                  }
+                 
               }   
           */
     res.status(200).send(result);
@@ -79,13 +67,7 @@ exports.post = async (req, res, next) => {
     let data = await customerDao.create(customerValidate);
     /*  #swagger.responses[200] = {
                   description: "Cria um cliente.",
-                  content: {
-                      "application/json": {
-                          schema:{
-                              $ref: "#/components/schemas/customerResponse"
-                          }
-                      }           
-                  }
+                  
               }   
           */
     res.status(201).send({
@@ -111,15 +93,8 @@ exports.put = async (req, res, next) => {
     let customerValidate = await customerValidation.validate(req.body);
     await customerDao.update(req.params.id, customerValidate);
     /*  #swagger.responses[200] = {
-                  description: "Atualiza um cliente.",
-                  content: {
-                      "application/json": {
-                          schema:{
-                              $ref: "#/components/schemas/customerResponse"
-                          }
-                      }           
-                  }
-              }   
+                  description: "Atualiza um cliente."
+                               }   
           */
     res.status(200).send({
       message: "Atualizado com sucesso!",
@@ -143,14 +118,7 @@ exports.delete = async (req, res, next) => {
   try {
     await customerDao.delete(req.params.id);
     /*  #swagger.responses[200] = {
-                  description: "Deleta um cliente.",
-                  content: {
-                      "application/json": {
-                          schema:{
-                              $ref: "#/components/schemas/customerResponse"
-                          }
-                      }           
-                  }
+                  description: "Deleta um cliente."                  
               }   
           */
     res.status(200).send({

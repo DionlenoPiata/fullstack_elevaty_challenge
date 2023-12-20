@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { IconButton, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -11,6 +12,12 @@ export default function Grid() {
   const [customers, setCustomers] = useContext(CustomersContext);
 
   const navigate = useNavigate();
+
+  const onViewInvoice = (params) => {
+    if (!params.row.invoiceLink) return;
+
+    window.open(`${params.row.invoiceLink}`, "_blank");
+  };
 
   const onEdit = (params) => {
     if (!params.row._id) return;
@@ -74,6 +81,16 @@ export default function Grid() {
       sortable: false,
       renderCell: (params) => (
         <Stack direction="row" spacing={2}>
+          <IconButton
+            href={params.invoiceLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            color="success"
+            size="small"
+            onClick={() => onViewInvoice(params)}
+          >
+            <ReceiptLongIcon fontSize="inherit" />
+          </IconButton>
           <IconButton color="info" size="small" onClick={() => onEdit(params)}>
             <EditIcon fontSize="inherit" />
           </IconButton>

@@ -1,9 +1,7 @@
 import React, { useState, useContext, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
 import Grid from "@mui/material/Unstable_Grid2";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -12,7 +10,6 @@ import CustomersContext from "../contexts/CustomersContext";
 import SearchContext from "../contexts/SearchContext";
 
 function SearchBar() {
-  let history = useNavigate();
   const [customers, setCustomers] = useContext(CustomersContext);
   const [search, setSearch] = useContext(SearchContext);
   const [loading, setLoading] = useState(false);
@@ -31,7 +28,6 @@ function SearchBar() {
       });
       setCustomers(response.data);
       setLoading(false);
-      //history(`/customers/?search=${nextValue}`);
     } catch (error) {
       setLoading(false);
       console.log(error);

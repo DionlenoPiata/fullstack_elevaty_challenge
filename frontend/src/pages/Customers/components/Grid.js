@@ -8,8 +8,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DataTable from "../../../components/DataTable";
 import CustomersContext from "../../../contexts/CustomersContext";
+import { useNotification } from "../../../contexts/NotificationContext";
 
 export default function Grid() {
+  const { showNotification } = useNotification();
   const [customers, setCustomers] = useContext(CustomersContext);
 
   const navigate = useNavigate();
@@ -48,8 +50,10 @@ export default function Grid() {
             (customer) => customer._id !== params.row._id
           ),
         });
+        showNotification("success", response.data.message);
       })
       .catch((error) => {
+        showNotification("error", error.response.data.message);
         console.log(error);
       });
   };

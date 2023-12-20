@@ -1,21 +1,11 @@
-import GlobalStyle from "./styles/global";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import Home from "./pages/Home";
+import { AppRoutes } from "./routes";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-]);
-
-function App() {
+export default function App() {
   return (
-    <RouterProvider router={router}>
-      <GlobalStyle />;
-    </RouterProvider>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }
-
-export default App;

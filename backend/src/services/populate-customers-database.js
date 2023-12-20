@@ -23,7 +23,8 @@ const customersArray = [
         cvv: "567",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Ana Souza",
@@ -45,7 +46,8 @@ const customersArray = [
         cvv: "678",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Lucas Santos",
@@ -67,7 +69,8 @@ const customersArray = [
         cvv: "789",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Rafael Lima",
@@ -89,7 +92,8 @@ const customersArray = [
         cvv: "890",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Carlos Pereira",
@@ -111,7 +115,8 @@ const customersArray = [
         cvv: "901",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Fernanda Costa",
@@ -133,7 +138,8 @@ const customersArray = [
         cvv: "012",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Juliana Santos",
@@ -155,7 +161,8 @@ const customersArray = [
         cvv: "567",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Mariano Oliveira",
@@ -177,7 +184,8 @@ const customersArray = [
         cvv: "678",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Roberta Silva",
@@ -199,7 +207,8 @@ const customersArray = [
         cvv: "789",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
   {
     fullName: "Anderson Santos",
@@ -221,7 +230,8 @@ const customersArray = [
         cvv: "456",
       },
     ],
-    invoiceLink: "https://example.com/invoice",
+    invoiceLink:
+      "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf",
   },
 ];
 
@@ -234,6 +244,7 @@ async function populate() {
     const customers = await customerDao.get();
 
     if (customers && customers.totalDocs === 0) {
+      console.log("Populate database!");
       customersArray.map(async (customer) => {
         await customerDao.create(customer);
       });

@@ -59,7 +59,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Retorna todos os clientes com busca e paginação."
+            "description": "Retorna todos os clientes com busca e paginação.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerArrayResponse"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -72,11 +79,25 @@
         ],
         "description": "Endpoint para criar cliente",
         "responses": {
-          "200": {
-            "description": "Cria um cliente."
-          },
           "201": {
-            "description": "Created"
+            "description": "Cria um cliente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerCreateResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/customerRequest"
+              }
+            }
           }
         }
       }
@@ -99,7 +120,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Retorna um cliente por ID."
+            "description": "Retorna um cliente por ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerResponse"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -123,7 +151,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Atualiza um cliente."
+            "description": "Atualiza um cliente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerUpdateResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/customerRequest"
+              }
+            }
           }
         }
       },
@@ -144,7 +189,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Deleta um cliente."
+            "description": "Deleta um cliente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerDeleteResponse"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -161,6 +213,59 @@
           "message": {
             "type": "string",
             "example": "Fullstack Challenge 🏅 - Elevaty"
+          }
+        }
+      },
+      "customerRequest": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "João Silva"
+          },
+          "email": {
+            "type": "string",
+            "example": "joao.silva@example.com"
+          },
+          "birthDate": {
+            "type": "string",
+            "example": "1990-01-15"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+55(11)98765-4321"
+          },
+          "address": {
+            "type": "string",
+            "example": "Rua Exemplo, 123"
+          },
+          "creditCards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cardNumber": {
+                  "type": "string",
+                  "example": "9876543210987654"
+                },
+                "cardHolder": {
+                  "type": "string",
+                  "example": "Joana Silva"
+                },
+                "expirationDate": {
+                  "type": "string",
+                  "example": "10/24"
+                },
+                "cvv": {
+                  "type": "string",
+                  "example": "456"
+                }
+              }
+            }
+          },
+          "invoiceLink": {
+            "type": "string",
+            "example": "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf"
           }
         }
       },
@@ -194,7 +299,7 @@
               "properties": {
                 "cardNumber": {
                   "type": "string",
-                  "example": "9876-5432-1098-7654"
+                  "example": "9876543210987654"
                 },
                 "cardHolder": {
                   "type": "string",
@@ -213,7 +318,7 @@
           },
           "invoiceLink": {
             "type": "string",
-            "example": "https://example.com/invoice"
+            "example": "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf"
           },
           "createdAt": {
             "type": "string",
@@ -222,6 +327,138 @@
           "updatedAt": {
             "type": "string",
             "example": "2023-12-14T15:30:00Z"
+          }
+        }
+      },
+      "customerArrayResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "6582d1ca2e6a3d2a3942ade8"
+                },
+                "fullName": {
+                  "type": "string",
+                  "example": "Ana Souza"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "ana.souza@example.com"
+                },
+                "birthDate": {
+                  "type": "string",
+                  "example": "1988-07-10T03:00:00.000Z"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+55(11)76543-2109"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "Rua Amostra, 789"
+                },
+                "creditCards": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "cardNumber": {
+                        "type": "string",
+                        "example": "2109-8765-4321-0987"
+                      },
+                      "cardHolder": {
+                        "type": "string",
+                        "example": "Pedro Souza"
+                      },
+                      "expirationDate": {
+                        "type": "string",
+                        "example": "11/24"
+                      },
+                      "cvv": {
+                        "type": "string",
+                        "example": "678"
+                      },
+                      "_id": {
+                        "type": "string",
+                        "example": "6582d1ca2e6a3d2a3942adea"
+                      }
+                    }
+                  }
+                },
+                "invoiceLink": {
+                  "type": "string",
+                  "example": "https://example.com/invoice"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "example": "2023-12-20T11:36:42.910Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "example": "2023-12-20T11:36:42.910Z"
+                },
+                "__v": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          },
+          "totalDocs": {
+            "type": "number",
+            "example": 5
+          },
+          "page": {
+            "type": "string",
+            "example": "2"
+          },
+          "totalPages": {
+            "type": "number",
+            "example": 3
+          },
+          "hasNext": {
+            "type": "boolean",
+            "example": true
+          },
+          "hasPrev": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "customerCreateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6582f7c2c477e7fbde0700f0"
+          },
+          "message": {
+            "type": "string",
+            "example": "Cadastro realizado com sucesso!"
+          }
+        }
+      },
+      "customerUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Atualizado com sucesso!"
+          }
+        }
+      },
+      "customerDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Removido com sucesso!"
           }
         }
       }

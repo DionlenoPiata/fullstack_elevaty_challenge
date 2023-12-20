@@ -16,9 +16,15 @@ exports.get = async (req, res, next) => {
     );
     /*  #swagger.responses[200] = {
                   description: "Retorna todos os clientes com busca e paginação.",
-                 
-              }   
-          */
+                  content: {
+                    "application/json": {
+                        schema:{
+                            $ref: "#/components/schemas/customerArrayResponse"
+                        }
+                    }           
+                }           
+      }   
+    */
     res.status(200).send({
       result,
       totalDocs,
@@ -45,9 +51,15 @@ exports.getById = async (req, res, next) => {
     let result = await customerDao.getById(id);
     /*  #swagger.responses[200] = {
                   description: "Retorna um  cliente por ID.",
-                 
-              }   
-          */
+                  content: {
+                    "application/json": {
+                        schema:{
+                            $ref: "#/components/schemas/customerResponse"
+                        }
+                    }           
+                }              
+        }   
+    */
     res.status(200).send(result);
   } catch (error) {
     console.log(`${new Date()} - (error) ${error}`);
@@ -65,11 +77,29 @@ exports.post = async (req, res, next) => {
     let customerValidate = await customerValidation.validate(req.body);
 
     let data = await customerDao.create(customerValidate);
-    /*  #swagger.responses[200] = {
+    /*  #swagger.requestBody = {
+                required: true,
+                content: {
+                    "application/json": {
+                        schema: {
+                            $ref: "#/components/schemas/customerRequest"
+                        }  
+                    }
+                }
+            } 
+    */
+
+    /* #swagger.responses[201] = {
                   description: "Cria um cliente.",
-                  
-              }   
-          */
+                  content: {
+                    "application/json": {
+                        schema:{
+                            $ref: "#/components/schemas/customerCreateResponse"
+                        }
+                    }           
+                }                        
+        }   
+   */
     res.status(201).send({
       id: data._id,
       message: "Cadastro realizado com sucesso!",
@@ -92,10 +122,29 @@ exports.put = async (req, res, next) => {
   try {
     let customerValidate = await customerValidation.validate(req.body);
     await customerDao.update(req.params.id, customerValidate);
+    /*  #swagger.requestBody = {
+                required: true,
+                content: {
+                    "application/json": {
+                        schema: {
+                            $ref: "#/components/schemas/customerRequest"
+                        }  
+                    }
+                }
+            } 
+    */
+
     /*  #swagger.responses[200] = {
-                  description: "Atualiza um cliente."
-                               }   
-          */
+                  description: "Atualiza um cliente.",
+                  content: {
+                    "application/json": {
+                        schema:{
+                            $ref: "#/components/schemas/customerUpdateResponse"
+                        }
+                    }           
+                } 
+        }   
+    */
     res.status(200).send({
       message: "Atualizado com sucesso!",
     });
@@ -118,7 +167,14 @@ exports.delete = async (req, res, next) => {
   try {
     await customerDao.delete(req.params.id);
     /*  #swagger.responses[200] = {
-                  description: "Deleta um cliente."                  
+                  description: "Deleta um cliente.",
+                  content: {
+                    "application/json": {
+                        schema:{
+                            $ref: "#/components/schemas/customerDeleteResponse"
+                        }
+                    }           
+                }                 
               }   
           */
     res.status(200).send({

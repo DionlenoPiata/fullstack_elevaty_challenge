@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "localhost:3000"
+      "url": "localhost:3003"
     }
   ],
   "paths": {
@@ -96,6 +96,37 @@
       }
     },
     "/customers/{id}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint para obter um cliente por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna um cliente por ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/customerResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
       "put": {
         "tags": [
           "Customer"
@@ -185,7 +216,7 @@
           },
           "phone": {
             "type": "string",
-            "example": "+55 11 98765-4321"
+            "example": "+55(11)98765-4321"
           },
           "address": {
             "type": "string",
@@ -198,7 +229,7 @@
               "properties": {
                 "cardNumber": {
                   "type": "string",
-                  "example": "9876 5432 1098 7654"
+                  "example": "9876-5432-1098-7654"
                 },
                 "cardHolder": {
                   "type": "string",

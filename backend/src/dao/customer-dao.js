@@ -7,7 +7,7 @@ exports.get = async (search, page = 1, limit = process.env.LIMIT) => {
   let query = {};
 
   if (search) {
-    query["name"] = { $regex: search, $options: "i" };
+    query["fullName"] = { $regex: search, $options: "i" };
   }
 
   let queries = [
@@ -27,8 +27,8 @@ exports.get = async (search, page = 1, limit = process.env.LIMIT) => {
   return res;
 };
 
-exports.getAll = async () => {
-  let res = await Document.find();
+exports.getById = async (id) => {
+  let res = await Document.findById(id);
   return res;
 };
 

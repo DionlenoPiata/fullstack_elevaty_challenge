@@ -42,6 +42,34 @@ exports.get = async (req, res, next) => {
   }
 };
 
+exports.getById = async (req, res, next) => {
+  // #swagger.tags = ['Customer']
+  // #swagger.description = 'Endpoint para obter um cliente por ID'
+  try {
+    let { id } = req.params;
+
+    let result = await customerDao.getById(id);
+    /*  #swagger.responses[200] = {
+                  description: "Retorna um  cliente por ID.",
+                  content: {
+                      "application/json": {
+                          schema:{
+                              $ref: "#/components/schemas/customerResponse"
+                          }
+                      }           
+                  }
+              }   
+          */
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(`${new Date()} - (error) ${error}`);
+    res.status(500).send({
+      message:
+        "Não foi possível processar sua solicitação, tente novamente mais tarde!",
+    });
+  }
+};
+
 exports.post = async (req, res, next) => {
   // #swagger.tags = ['Customer']
   // #swagger.description = 'Endpoint para criar cliente'
